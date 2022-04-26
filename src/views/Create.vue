@@ -90,7 +90,6 @@ export default {
 
     function onFileSelected(event) {
       file = event.target.files[0];
-      console.log("selected file", file);
     }
 
     return {
@@ -104,5 +103,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

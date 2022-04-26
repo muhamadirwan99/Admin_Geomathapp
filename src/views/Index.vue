@@ -38,7 +38,10 @@
                         class="btn btn-sm btn-outline-info"
                         >Edit</router-link
                       >
-                      <button class="btn btn-sm btn-outline-danger">
+                      <button
+                        class="btn btn-sm btn-outline-danger"
+                        @click.prevent="destroy(video.id, index)"
+                      >
                         Delete
                       </button>
                     </div>
@@ -75,8 +78,20 @@ export default {
         });
     });
 
+    function destroy(id, index) {
+      axios
+        .delete(`http://127.0.0.1:5000/api/videos/${id}`)
+        .then(() => {
+          videos.value.data.splice(index, 1);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    }
+
     return {
       videos,
+      destroy,
     };
   },
 };
