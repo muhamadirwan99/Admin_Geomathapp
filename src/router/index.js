@@ -24,6 +24,11 @@ const router = createRouter({
       name: "typo",
       component: () => import("../views/TypoView.vue"),
     },
+    {
+      path: "/edit",
+      name: "edit",
+      component: () => import("../views/EditView.vue"),
+    },
   ],
 });
 
