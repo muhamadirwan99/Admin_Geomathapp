@@ -1,24 +1,28 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import Index from "../views/Index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "index",
-      component: Index,
+      name: "home",
+      component: HomeView,
     },
     {
-      path: "/create",
-      name: "create",
-      component: () => import("../views/Create.vue"),
+      path: "/video",
+      name: "video",
+      component: () => import("../views/VideoView.vue"),
     },
     {
-      path: "/edit/:id",
-      name: "edit",
-      component: () => import("../views/Edit.vue"),
+      path: "/user",
+      name: "user",
+      component: () => import("../views/UserView.vue"),
+    },
+    {
+      path: "/typo",
+      name: "typo",
+      component: () => import("../views/TypoView.vue"),
     },
   ],
 });
