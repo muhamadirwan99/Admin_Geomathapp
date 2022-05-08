@@ -20,19 +20,14 @@ const router = createRouter({
       component: () => import("../views/TipsView.vue"),
     },
     {
-      path: "/edittips",
-      name: "edittips",
-      component: () => import("../views/EditTipsView.vue"),
+      path: "/webinar",
+      name: "webinar",
+      component: () => import("../views/WebinarView.vue"),
     },
     {
-      path: "/typo",
-      name: "typo",
-      component: () => import("../views/TypoView.vue"),
-    },
-    {
-      path: "/edit",
-      name: "edit",
-      component: () => import("../views/EditView.vue"),
+      path: "/editvideo",
+      name: "editvideo",
+      component: () => import("../views/EditVideoView.vue"),
     },
     {
       path: "/editwebinar",
@@ -40,9 +35,9 @@ const router = createRouter({
       component: () => import("../views/EditWebinarView.vue"),
     },
     {
-      path: "/webinar",
-      name: "webinar",
-      component: () => import("../views/WebinarView.vue"),
+      path: "/edittips",
+      name: "edittips",
+      component: () => import("../views/EditTipsView.vue"),
     },
   ],
 });

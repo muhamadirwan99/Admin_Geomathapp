@@ -240,7 +240,6 @@ export default {
         .catch((err) => {
           validation.value = err.response.data;
         });
-      console.log("valid : ", validation);
     }
 
     function onThumbnailSelected(event) {

@@ -37,6 +37,9 @@
                   type="file"
                   class="form-control"
                 />
+                <div v-if="validation.file" class="text-danger">
+                  {{ validation.file }}
+                </div>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Modul</label><br />
@@ -46,6 +49,9 @@
                   type="file"
                   class="form-control"
                 />
+              </div>
+              <div v-if="validation.file" class="text-danger">
+                {{ validation.file }}
               </div>
               <button class="btn btn-primary">Submit</button>
             </form>
@@ -83,7 +89,10 @@
                       <td>
                         <div class="btn-group">
                           <router-link
-                            :to="{ name: 'edit', params: { id: video.id } }"
+                            :to="{
+                              name: 'editvideo',
+                              params: { id: video.id },
+                            }"
                             class="btn btn-sm btn-outline-info"
                             >Edit</router-link
                           >
@@ -201,8 +210,16 @@ export default {
       formData.append("name", video.name);
       formData.append("idYt", video.idYt);
       formData.append("desc", video.desc);
-      formData.append("thumbnail", thumbnail, thumbnail.name);
-      formData.append("modul", modul, modul.name);
+      if (thumbnail._value === null) {
+        formData.append("thumbnail", video.thumbnail);
+      } else {
+        formData.append("thumbnail", thumbnail, thumbnail.name);
+      }
+      if (modul._value === null) {
+        formData.append("modul", video.modul);
+      } else {
+        formData.append("modul", modul, modul.name);
+      }
       axios
         .post("http://127.0.0.1:5000/api/videos", formData)
         .then(() => {

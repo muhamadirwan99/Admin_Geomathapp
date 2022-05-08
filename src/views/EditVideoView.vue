@@ -29,6 +29,37 @@
                   {{ validation.idYt }}
                 </div>
               </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Thumbnail Terkini</label><br />
+                <img
+                  :src="'http://localhost:5000/' + video.thumbnail"
+                  width="300"
+                  class="img-thumbnail mb-3"
+                /><br />
+                <label for="" class="form-label">Thumbnail</label><br />
+                <input
+                  id="file"
+                  @change="onThumbnailSelected"
+                  type="file"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Modul Terkini</label><br />
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  v-model="video.modul"
+                  disabled
+                />
+                <label for="" class="form-label">Modul</label><br />
+                <input
+                  id="modul"
+                  @change="onModulSelected"
+                  type="file"
+                  class="form-control"
+                />
+              </div>
               <button class="btn btn-outline-primary">Submit</button>
             </form>
           </div>
@@ -45,13 +76,16 @@ import axios from "axios";
 
 export default {
   setup() {
-    let file = ref(null);
+    let thumbnail = ref(null);
+    let modul = ref(null);
 
     // data binding
     let video = reactive({
       name: "",
       idYt: "",
       desc: "",
+      thumbnail: "",
+      modul: "",
     });
 
     const validation = ref([]);
@@ -66,6 +100,8 @@ export default {
           video.name = result.data.data.name;
           video.desc = result.data.data.desc;
           video.idYt = result.data.data.idYt;
+          video.thumbnail = result.data.data.thumbnail;
+          video.modul = result.data.data.modul.replace("public/moduls\\", "");
         })
         .catch((err) => {
           console.log(err);
@@ -76,6 +112,16 @@ export default {
       formData.append("name", video.name);
       formData.append("idYt", video.idYt);
       formData.append("desc", video.desc);
+      if (thumbnail._value === null) {
+        formData.append("thumbnail", video.thumbnail);
+      } else {
+        formData.append("thumbnail", thumbnail, thumbnail.name);
+      }
+      if (modul._value === null) {
+        formData.append("modul", video.modul);
+      } else {
+        formData.append("modul", modul, modul.name);
+      }
       axios
         .put(`http://127.0.0.1:5000/api/videos/${route.params.id}`, formData)
         .then(() => {
@@ -88,9 +134,12 @@ export default {
         });
     }
 
-    function onFileSelected(event) {
-      file = event.target.files[0];
-      console.log("selected file", file);
+    function onThumbnailSelected(event) {
+      thumbnail = event.target.files[0];
+    }
+
+    function onModulSelected(event) {
+      modul = event.target.files[0];
     }
 
     return {
@@ -98,8 +147,10 @@ export default {
       validation,
       router,
       update,
-      onFileSelected,
-      file,
+      onThumbnailSelected,
+      onModulSelected,
+      thumbnail,
+      modul,
     };
   },
 };
