@@ -65,4 +65,14 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.btn-group .btn:focus {
+  background-color: #ef8157 !important;
+}
+
+.btn-primary:hover {
+  color: #212529;
+  background-color: #52bebe;
+  border-color: #8ad3d3;
+}
 </style>

@@ -4,48 +4,33 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Add Video</h4>
+            <h4 class="card-title">Add Tips And Trick</h4>
           </div>
           <div class="card-body">
             <form @submit.prevent="store()">
               <div class="mb-3">
-                <label for="" class="form-label">Nama</label>
-                <input type="text" class="form-control" v-model="video.name" />
+                <label for="" class="form-label">Kategori</label>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="tips.category"
+                >
+                  <option value="One">One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option></select
+                ><br />
+                <label for="" class="form-label">Judul</label>
+                <input type="text" class="form-control" v-model="tips.name" />
                 <div v-if="validation.name" class="text-danger">
                   {{ validation.name }}
                 </div>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input type="text" class="form-control" v-model="video.desc" />
+                <input type="text" class="form-control" v-model="tips.desc" />
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">ID Video Youtube</label>
-                <input type="text" class="form-control" v-model="video.idYt" />
-                <div v-if="validation.idYt" class="text-danger">
-                  {{ validation.idYt }}
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Thumbnail</label><br />
-                <input
-                  id="file"
-                  @change="onThumbnailSelected"
-                  type="file"
-                  class="form-control"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Modul</label><br />
-                <input
-                  id="modul"
-                  @change="onModulSelected"
-                  type="file"
-                  class="form-control"
-                />
               </div>
               <button class="btn btn-primary">Submit</button>
             </form>
@@ -54,36 +39,26 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">List Video</h4>
+              <h4 class="card-title">List Tips</h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table">
                   <thead class="text-primary">
-                    <th>Nama</th>
+                    <th>Kategori</th>
+                    <th>Judul</th>
                     <th>Deskripsi</th>
-                    <th>ID Video Youtube</th>
-                    <th>Thumbnail</th>
-                    <th>Modul</th>
                     <th>Action</th>
                   </thead>
                   <tbody>
-                    <tr v-for="(video, index) in videos.data" :key="index">
-                      <td>{{ video.name }}</td>
-                      <td>{{ video.desc }}</td>
-                      <td>{{ video.idYt }}</td>
-                      <td>
-                        <img
-                          :src="'http://localhost:5000/' + video.thumbnail"
-                          width="300"
-                          class="img-thumbnail"
-                        />
-                      </td>
-                      <td>{{ video.modul.replace("public/moduls\\", "") }}</td>
+                    <tr v-for="(tips, index) in manyTips.data" :key="index">
+                      <td>{{ tips.category }}</td>
+                      <td>{{ tips.name }}</td>
+                      <td>{{ tips.desc }}</td>
                       <td>
                         <div class="btn-group">
                           <router-link
-                            :to="{ name: 'edit', params: { id: video.id } }"
+                            :to="{ name: 'edittips', params: { id: tips.id } }"
                             class="btn btn-sm btn-outline-info"
                             >Edit</router-link
                           >
@@ -111,7 +86,7 @@
                                     class="modal-title"
                                     id="exampleModalLabel"
                                   >
-                                    Delete Video
+                                    Delete Tips
                                   </h5>
                                   <button
                                     type="button"
@@ -136,7 +111,7 @@
                                   <button
                                     type="button"
                                     class="btn btn-danger"
-                                    @click.prevent="destroy(video.id, index)"
+                                    @click.prevent="destroy(tips.id, index)"
                                     data-dismiss="modal"
                                   >
                                     Delete
@@ -167,29 +142,25 @@ import axios from "axios";
 export default {
   setup() {
     // reactive state
-    let videos = ref([]);
-    let thumbnail = ref(null);
-    let modul = ref(null);
+    let manyTips = ref([]);
     const validation = ref([]);
     const router = useRouter();
 
     const url = "http://localhost:5000/";
 
     // data binding
-    const video = reactive({
+    const tips = reactive({
+      category: "",
       name: "",
-      idYt: "",
       desc: "",
-      thumbnail: "",
-      modul: "",
     });
 
     onMounted(() => {
       // get data from api endpoint
       axios
-        .get(url + "api/videos")
+        .get(url + "api/tips")
         .then((result) => {
-          videos.value = result.data;
+          manyTips.value = result.data;
         })
         .catch((err) => {
           console.log(err.response);
@@ -198,16 +169,15 @@ export default {
 
     function store() {
       const formData = new FormData();
-      formData.append("name", video.name);
-      formData.append("idYt", video.idYt);
-      formData.append("desc", video.desc);
-      formData.append("thumbnail", thumbnail, thumbnail.name);
-      formData.append("modul", modul, modul.name);
+      formData.append("category", tips.category);
+      formData.append("name", tips.name);
+      formData.append("desc", tips.desc);
+
       axios
-        .post("http://127.0.0.1:5000/api/videos", formData)
+        .post("http://127.0.0.1:5000/api/tips", formData)
         .then(() => {
           router.go({
-            name: "video",
+            name: "tips",
           });
         })
         .catch((err) => {
@@ -215,19 +185,11 @@ export default {
         });
     }
 
-    function onThumbnailSelected(event) {
-      thumbnail = event.target.files[0];
-    }
-
-    function onModulSelected(event) {
-      modul = event.target.files[0];
-    }
-
     function destroy(id, index) {
       axios
-        .delete(`http://127.0.0.1:5000/api/videos/${id}`)
+        .delete(`http://127.0.0.1:5000/api/tips/${id}`)
         .then(() => {
-          videos.value.data.splice(index, 1);
+          manyTips.value.data.splice(index, 1);
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -235,15 +197,11 @@ export default {
     }
 
     return {
-      video,
+      tips,
       validation,
       router,
       store,
-      onThumbnailSelected,
-      onModulSelected,
-      thumbnail,
-      modul,
-      videos,
+      manyTips,
       destroy,
     };
   },

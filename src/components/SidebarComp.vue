@@ -14,15 +14,15 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/user">
-          <i class="nc-icon nc-single-02"></i>
-          <p>User Profile</p>
+        <router-link to="/tips">
+          <i class="nc-icon nc-bulb-63"></i>
+          <p>Tips and trick</p>
         </router-link>
       </li>
       <li>
-        <router-link to="/typo">
-          <i class="nc-icon nc-caps-small"></i>
-          <p>Typography</p>
+        <router-link to="/webinar">
+          <i class="nc-icon nc-bullet-list-67"></i>
+          <p>Webinar</p>
         </router-link>
       </li>
     </ul>

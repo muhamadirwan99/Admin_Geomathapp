@@ -15,9 +15,14 @@ const router = createRouter({
       component: () => import("../views/VideoView.vue"),
     },
     {
-      path: "/user",
-      name: "user",
-      component: () => import("../views/UserView.vue"),
+      path: "/tips",
+      name: "tips",
+      component: () => import("../views/TipsView.vue"),
+    },
+    {
+      path: "/edittips",
+      name: "edittips",
+      component: () => import("../views/EditTipsView.vue"),
     },
     {
       path: "/typo",
@@ -28,6 +33,16 @@ const router = createRouter({
       path: "/edit",
       name: "edit",
       component: () => import("../views/EditView.vue"),
+    },
+    {
+      path: "/editwebinar",
+      name: "editwebinar",
+      component: () => import("../views/EditWebinarView.vue"),
+    },
+    {
+      path: "/webinar",
+      name: "webinar",
+      component: () => import("../views/WebinarView.vue"),
     },
   ],
 });
