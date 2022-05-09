@@ -60,7 +60,7 @@
                   class="form-control"
                 />
               </div>
-              <button class="btn btn-outline-primary">Submit</button>
+              <button class="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>

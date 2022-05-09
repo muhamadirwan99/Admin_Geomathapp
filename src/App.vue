@@ -75,4 +75,26 @@ nav a.router-link-exact-active {
   background-color: #52bebe;
   border-color: #8ad3d3;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff; /*set the color you want here*/
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.show > .btn-primary.dropdown-toggle,
+.show > .btn-primary.dropdown-toggle:focus,
+.show > .btn-primary.dropdown-toggle:hover {
+  background-color: #0069d9 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
 </style>
