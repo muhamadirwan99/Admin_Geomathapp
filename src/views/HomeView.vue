@@ -7,13 +7,13 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-globe text-warning"></i>
+                  <i class="nc-icon nc-button-play text-warning"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Capacity</p>
-                  <p class="card-title">150GB</p>
+                  <p class="card-category">Video</p>
+                  <p class="card-title">{{ videos.length }}</p>
                   <p></p>
                 </div>
               </div>
@@ -21,10 +21,6 @@
           </div>
           <div class="card-footer">
             <hr />
-            <div class="stats">
-              <i class="fa fa-refresh"></i>
-              Update Now
-            </div>
           </div>
         </div>
       </div>
@@ -34,13 +30,13 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-money-coins text-success"></i>
+                  <i class="nc-icon nc-bulb-63 text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Revenue</p>
-                  <p class="card-title">$ 1,345</p>
+                  <p class="card-category">Tips And Trick</p>
+                  <p class="card-title">{{ tips.length }}</p>
                   <p></p>
                 </div>
               </div>
@@ -48,10 +44,6 @@
           </div>
           <div class="card-footer">
             <hr />
-            <div class="stats">
-              <i class="fa fa-calendar-o"></i>
-              Last day
-            </div>
           </div>
         </div>
       </div>
@@ -61,13 +53,13 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-vector text-danger"></i>
+                  <i class="nc-icon nc-bullet-list-67 text-danger"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Errors</p>
-                  <p class="card-title">23</p>
+                  <p class="card-category">Webinar</p>
+                  <p class="card-title">{{ webinars.length }}</p>
                   <p></p>
                 </div>
               </div>
@@ -75,37 +67,6 @@
           </div>
           <div class="card-footer">
             <hr />
-            <div class="stats">
-              <i class="fa fa-clock-o"></i>
-              In the last hour
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-favourite-28 text-primary"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Followers</p>
-                  <p class="card-title">+45K</p>
-                  <p></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <hr />
-            <div class="stats">
-              <i class="fa fa-refresh"></i>
-              Update now
-            </div>
           </div>
         </div>
       </div>
@@ -129,7 +90,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-4">
         <div class="card">
           <div class="card-header">
@@ -174,6 +135,55 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
+
+<script>
+import { onMounted, ref } from "vue";
+import axios from "axios";
+export default {
+  setup() {
+    const url = "http://localhost:5000/";
+    let videos = ref([]);
+    let tips = ref([]);
+    let webinars = ref([]);
+
+    onMounted(() => {
+      // get data from api endpoint
+      axios
+        .get(url + "api/videos")
+        .then((result) => {
+          videos.value = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+
+      axios
+        .get(url + "api/tips")
+        .then((result) => {
+          tips.value = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+
+      axios
+        .get(url + "api/webinars")
+        .then((result) => {
+          webinars.value = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    });
+
+    return {
+      videos,
+      tips,
+      webinars,
+    };
+  },
+};
+</script>

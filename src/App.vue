@@ -2,17 +2,13 @@
   <div class="wrapper">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="assets/img/logo-small.png" />
+        <router-link to="/" class="simple-text logo-mini">
+          <div class="logo-image">
+            <img src="assets/img/logo pladis.png" />
           </div>
-        </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-          Menu
-          <!-- <div class="logo-image-big">
-            <img src="assets/img/logo-big.png" />
-          </div> -->
-        </a>
+        </router-link>
+
+        <router-link to="/" class="simple-text">Menu</router-link>
       </div>
       <!-- Sidebar -->
       <SidebarComp />
