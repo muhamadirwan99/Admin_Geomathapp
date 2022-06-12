@@ -3,9 +3,9 @@
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
         <router-link to="/" class="simple-text logo-mini">
-          <div class="logo-image">
+          <!-- <div class="logo-image">
             <img src="/assets/img/logo pladis.png" />
-          </div>
+          </div> -->
         </router-link>
 
         <router-link to="/" class="simple-text">Menu</router-link>
