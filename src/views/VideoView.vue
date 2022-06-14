@@ -182,7 +182,7 @@ export default {
     const validation = ref([]);
     const router = useRouter();
 
-    const url = "http://localhost:5000/";
+    const url = "http://34.128.78.90:5000/";
 
     // data binding
     const video = reactive({
@@ -221,7 +221,7 @@ export default {
         formData.append("modul", modul, modul.name);
       }
       axios
-        .post("http://127.0.0.1:5000/api/videos", formData)
+        .post("http://34.128.78.90:5000/api/videos", formData)
         .then(() => {
           router.go({
             name: "video",
@@ -242,7 +242,7 @@ export default {
 
     function destroy(id, index) {
       axios
-        .delete(`http://127.0.0.1:5000/api/videos/${id}`)
+        .delete(`http://34.128.78.90:5000/api/videos/${id}`)
         .then(() => {
           videos.value.data.splice(index, 1);
         })

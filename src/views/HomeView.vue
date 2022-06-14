@@ -144,7 +144,7 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 export default {
   setup() {
-    const url = "http://localhost:5000/";
+    const url = "http://34.128.78.90:5000/";
     let videos = ref([]);
     let tips = ref([]);
     let webinars = ref([]);

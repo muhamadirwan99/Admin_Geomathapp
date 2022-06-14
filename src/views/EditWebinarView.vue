@@ -103,7 +103,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://127.0.0.1:5000/api/webinars/${route.params.id}`)
+        .get(`http://34.128.78.90:5000/api/webinars/${route.params.id}`)
         .then((result) => {
           webinar.name = result.data.data.name;
           webinar.desc = result.data.data.desc;
@@ -131,7 +131,10 @@ export default {
       }
       formData.append("status", true);
       axios
-        .put(`http://127.0.0.1:5000/api/webinars/${route.params.id}`, formData)
+        .put(
+          `http://34.128.78.90:5000/api/webinars/${route.params.id}`,
+          formData
+        )
         .then(() => {
           router.push({
             name: "webinar",
