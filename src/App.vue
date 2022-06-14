@@ -4,7 +4,7 @@
       <div class="logo">
         <router-link to="/" class="simple-text logo-mini">
           <!-- <div class="logo-image">
-            <img src="/assets/img/logo pladis.png" />
+            <img src="../assets/img/logo pladis.png" />
           </div> -->
         </router-link>
 
