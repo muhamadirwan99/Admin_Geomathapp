@@ -80,7 +80,7 @@
                       <td>{{ video.idYt }}</td>
                       <td>
                         <img
-                          :src="'http://localhost:5000/' + video.thumbnail"
+                          :src="'http://34.128.78.90:5000/' + video.thumbnail"
                           width="300"
                           class="img-thumbnail"
                         />

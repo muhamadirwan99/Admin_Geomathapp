@@ -75,16 +75,30 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">Users Behavior</h5>
-            <p class="card-category">24 Hours performance</p>
+            <h5 class="card-title">Video terbaru</h5>
+            <!-- <p class="card-category">24 Hours performance</p> -->
           </div>
           <div class="card-body">
-            <canvas id="chartHours" width="400" height="100"></canvas>
-          </div>
-          <div class="card-footer">
-            <hr />
-            <div class="stats">
-              <i class="fa fa-history"></i> Updated 3 minutes ago
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>Nama</th>
+
+                  <th>Thumbnail</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ videoName }}</td>
+                    <td>
+                      <img
+                        :src="'http://34.128.78.90:5000/' + videoThumbnail"
+                        width="300"
+                        class="img-thumbnail"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -148,6 +162,8 @@ export default {
     let videos = ref([]);
     let tips = ref([]);
     let webinars = ref([]);
+    let videoName = ref();
+    let videoThumbnail = ref();
 
     onMounted(() => {
       // get data from api endpoint
@@ -155,6 +171,8 @@ export default {
         .get(url + "api/videos")
         .then((result) => {
           videos.value = result.data.data;
+          videoName.value = result.data.data[0].name;
+          videoThumbnail.value = result.data.data[0].thumbnail;
         })
         .catch((err) => {
           console.log(err.response);
@@ -183,6 +201,8 @@ export default {
       videos,
       tips,
       webinars,
+      videoName,
+      videoThumbnail,
     };
   },
 };

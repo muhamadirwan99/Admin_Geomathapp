@@ -95,7 +95,7 @@
                       <td>{{ webinar.date }}</td>
                       <td>
                         <img
-                          :src="'http://localhost:5000/' + webinar.thumbnail"
+                          :src="'http://34.128.78.90:5000/' + webinar.thumbnail"
                           width="300"
                           class="img-thumbnail"
                         />
