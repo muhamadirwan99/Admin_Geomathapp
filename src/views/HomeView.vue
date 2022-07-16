@@ -157,6 +157,14 @@ export default {
         .get(url + "api/videos")
         .then((result) => {
           videos.value = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+
+      axios
+        .get(url + "api/videos/update/recent")
+        .then((result) => {
           videoName.value = result.data.data[0].name;
           videoThumbnail.value = result.data.data[0].thumbnail;
         })
@@ -177,6 +185,16 @@ export default {
         .get(url + "api/webinars")
         .then((result) => {
           webinars.value = result.data.data;
+          webinarName.value = result.data.data[0].name;
+          webinarThumbnail.value = result.data.data[0].thumbnail;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+
+      axios
+        .get(url + "api/webinars/update/recent")
+        .then((result) => {
           webinarName.value = result.data.data[0].name;
           webinarThumbnail.value = result.data.data[0].thumbnail;
         })
