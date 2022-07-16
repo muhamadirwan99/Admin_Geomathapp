@@ -90,7 +90,7 @@
                       <td>{{ webinar.name }}</td>
                       <td>{{ webinar.desc }}</td>
                       <td>
-                        <a href="{{webinar.link}}">{{ webinar.link }}</a>
+                        {{ webinar.link }}
                       </td>
                       <td>{{ webinar.date }}</td>
                       <td>
