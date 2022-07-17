@@ -69,6 +69,7 @@
                             class="btn btn-sm btn-outline-danger"
                             data-toggle="modal"
                             data-target="#exampleModal"
+                            @click="getId(tips.id)"
                           >
                             Delete
                           </button>
@@ -113,7 +114,7 @@
                                   <button
                                     type="button"
                                     class="btn btn-danger"
-                                    @click.prevent="destroy(tips.id, index)"
+                                    @click.prevent="destroy(idTips, index)"
                                     data-dismiss="modal"
                                   >
                                     Delete
@@ -145,6 +146,7 @@ export default {
   setup() {
     // reactive state
     let manyTips = ref([]);
+    let idTips = ref([]);
     const validation = ref([]);
     const router = useRouter();
 
@@ -192,10 +194,17 @@ export default {
         .delete(`http://34.128.78.90:5000/api/tips/${id}`)
         .then(() => {
           manyTips.value.data.splice(index, 1);
+          router.go({
+            name: "tips",
+          });
         })
         .catch((err) => {
           console.log(err.response.data);
         });
+    }
+
+    function getId(id) {
+      idTips.value = id;
     }
 
     return {
@@ -205,6 +214,8 @@ export default {
       store,
       manyTips,
       destroy,
+      getId,
+      idTips,
     };
   },
 };

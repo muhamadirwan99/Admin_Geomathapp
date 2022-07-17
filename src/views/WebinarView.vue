@@ -115,6 +115,7 @@
                             class="btn btn-sm btn-outline-danger"
                             data-toggle="modal"
                             data-target="#exampleModal"
+                            @click="getId(webinar.id)"
                           >
                             Delete
                           </button>
@@ -159,7 +160,7 @@
                                   <button
                                     type="button"
                                     class="btn btn-danger"
-                                    @click.prevent="destroy(webinar.id, index)"
+                                    @click.prevent="destroy(idWebinar, index)"
                                     data-dismiss="modal"
                                   >
                                     Delete
@@ -193,6 +194,7 @@ export default {
     let webinars = ref([]);
     let thumbnail = ref(null);
     let modul = ref(null);
+    let idWebinar = ref(null);
     const validation = ref([]);
     const router = useRouter();
 
@@ -255,10 +257,17 @@ export default {
         .delete(`http://34.128.78.90:5000/api/webinars/${id}`)
         .then(() => {
           webinars.value.data.splice(index, 1);
+          router.go({
+            name: "webinar",
+          });
         })
         .catch((err) => {
           console.log(err.response.data);
         });
+    }
+
+    function getId(id) {
+      idWebinar.value = id;
     }
 
     return {
@@ -272,6 +281,8 @@ export default {
       modul,
       webinars,
       destroy,
+      getId,
+      idWebinar,
     };
   },
 };

@@ -101,6 +101,7 @@
                             class="btn btn-sm btn-outline-danger"
                             data-toggle="modal"
                             data-target="#exampleModal"
+                            @click="getId(video.id)"
                           >
                             Delete
                           </button>
@@ -145,7 +146,7 @@
                                   <button
                                     type="button"
                                     class="btn btn-danger"
-                                    @click.prevent="destroy(video.id, index)"
+                                    @click.prevent="destroy(idVideo, index)"
                                     data-dismiss="modal"
                                   >
                                     Delete
@@ -179,6 +180,7 @@ export default {
     let videos = ref([]);
     let thumbnail = ref(null);
     let modul = ref(null);
+    let idVideo = ref(null);
     const validation = ref([]);
     const router = useRouter();
 
@@ -245,10 +247,17 @@ export default {
         .delete(`http://34.128.78.90:5000/api/videos/${id}`)
         .then(() => {
           videos.value.data.splice(index, 1);
+          router.go({
+            name: "video",
+          });
         })
         .catch((err) => {
           console.log(err.response.data);
         });
+    }
+
+    function getId(id) {
+      idVideo.value = id;
     }
 
     return {
@@ -262,6 +271,8 @@ export default {
       modul,
       videos,
       destroy,
+      getId,
+      idVideo,
     };
   },
 };
