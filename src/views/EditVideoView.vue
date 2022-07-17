@@ -32,7 +32,7 @@
               <div class="mb-3">
                 <label for="" class="form-label">Thumbnail Terkini</label><br />
                 <img
-                  :src="'http://localhost:5000/' + video.thumbnail"
+                  :src="'http://34.128.78.90:5000/' + video.thumbnail"
                   width="300"
                   class="img-thumbnail mb-3"
                 /><br />

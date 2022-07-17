@@ -56,7 +56,7 @@
               <div class="mb-3">
                 <label for="" class="form-label">Pamflet Terkini</label><br />
                 <img
-                  :src="'http://localhost:5000/' + webinar.thumbnail"
+                  :src="'http://34.128.78.90:5000/' + webinar.thumbnail"
                   width="300"
                   class="img-thumbnail mb-3"
                 /><br />
