@@ -90,7 +90,7 @@
                       <td>{{ webinar.name }}</td>
                       <td>{{ webinar.desc }}</td>
                       <td>
-                        {{ webinar.link }}
+                        <a v-bind:href="webinar.link">Link webinar</a>
                       </td>
                       <td>{{ webinar.date }}</td>
                       <td>
