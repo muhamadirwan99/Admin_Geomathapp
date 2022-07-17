@@ -101,7 +101,7 @@ export default {
           video.desc = result.data.data.desc;
           video.idYt = result.data.data.idYt;
           video.thumbnail = result.data.data.thumbnail;
-          video.modul = result.data.data.modul.replace("public/moduls\\", "");
+          video.modul = result.data.data.modul.replace("public/moduls/", "");
         })
         .catch((err) => {
           console.log(err);

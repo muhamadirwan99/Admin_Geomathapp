@@ -85,7 +85,7 @@
                           class="img-thumbnail"
                         />
                       </td>
-                      <td>{{ video.modul.replace("public/moduls\\", "") }}</td>
+                      <td>{{ video.modul.replace("public/moduls/", "") }}</td>
                       <td>
                         <div class="btn-group">
                           <router-link
