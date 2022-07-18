@@ -17,10 +17,13 @@
                 >
                   <option value="Disleksia">Disleksia</option>
                   <option value="Pembelajaran">Pembelajaran</option>
-                  <option value="Peningkatan Minat">
-                    Peningkatan Minat
-                  </option></select
-                ><br />
+                  <option value="Peningkatan Minat">Peningkatan Minat</option>
+                </select>
+                <div v-if="validation.category" class="text-danger">
+                  {{ validation.category }}
+                </div>
+              </div>
+              <div class="div mb-3">
                 <label for="" class="form-label">Judul</label>
                 <input type="text" class="form-control" v-model="tips.name" />
                 <div v-if="validation.name" class="text-danger">

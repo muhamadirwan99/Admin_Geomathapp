@@ -135,7 +135,7 @@
                                     class="modal-title"
                                     id="exampleModalLabel"
                                   >
-                                    Delete Video
+                                    Delete Tips
                                   </h5>
                                   <button
                                     type="button"
