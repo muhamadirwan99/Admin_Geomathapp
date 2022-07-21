@@ -30,21 +30,6 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Thumbnail Terkini</label><br />
-                <img
-                  :src="'http://34.128.78.90:5000/' + video.thumbnail"
-                  width="300"
-                  class="img-thumbnail mb-3"
-                /><br />
-                <label for="" class="form-label">Thumbnail</label><br />
-                <input
-                  id="file"
-                  @change="onThumbnailSelected"
-                  type="file"
-                  class="form-control"
-                />
-              </div>
-              <div class="mb-3">
                 <label for="" class="form-label">Modul Terkini</label><br />
                 <input
                   type="text"
@@ -112,11 +97,7 @@ export default {
       formData.append("name", video.name);
       formData.append("idYt", video.idYt);
       formData.append("desc", video.desc);
-      if (thumbnail._value === null) {
-        formData.append("thumbnail", video.thumbnail);
-      } else {
-        formData.append("thumbnail", thumbnail, thumbnail.name);
-      }
+
       if (modul._value === null) {
         formData.append("modul", video.modul);
       } else {
@@ -147,9 +128,7 @@ export default {
       validation,
       router,
       update,
-      onThumbnailSelected,
       onModulSelected,
-      thumbnail,
       modul,
     };
   },
