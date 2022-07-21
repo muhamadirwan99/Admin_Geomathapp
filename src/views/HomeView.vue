@@ -89,7 +89,7 @@
                     <td>{{ videoName }}</td>
                     <td>
                       <img
-                        :src="'http://34.128.78.90:5000/' + videoThumbnail"
+                        :src="videoThumbnail"
                         width="300"
                         class="img-thumbnail"
                       />
