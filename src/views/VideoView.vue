@@ -30,18 +30,6 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Thumbnail</label><br />
-                <input
-                  id="file"
-                  @change="onThumbnailSelected"
-                  type="file"
-                  class="form-control"
-                />
-                <div v-if="validation.file" class="text-danger">
-                  {{ validation.file }}
-                </div>
-              </div>
-              <div class="mb-3">
                 <label for="" class="form-label">Modul</label><br />
                 <input
                   id="modul"
@@ -80,7 +68,7 @@
                       <td>{{ video.idYt }}</td>
                       <td>
                         <img
-                          :src="'http://34.128.78.90:5000/' + video.thumbnail"
+                          :src="video.thumbnail"
                           width="300"
                           class="img-thumbnail"
                         />
@@ -178,7 +166,6 @@ export default {
   setup() {
     // reactive state
     let videos = ref([]);
-    let thumbnail = ref(null);
     let modul = ref(null);
     let idVideo = ref(null);
     const validation = ref([]);
@@ -212,11 +199,6 @@ export default {
       formData.append("name", video.name);
       formData.append("idYt", video.idYt);
       formData.append("desc", video.desc);
-      if (thumbnail._value === null) {
-        formData.append("thumbnail", video.thumbnail);
-      } else {
-        formData.append("thumbnail", thumbnail, thumbnail.name);
-      }
       if (modul._value === null) {
         formData.append("modul", video.modul);
       } else {
@@ -232,10 +214,6 @@ export default {
         .catch((err) => {
           validation.value = err.response.data;
         });
-    }
-
-    function onThumbnailSelected(event) {
-      thumbnail = event.target.files[0];
     }
 
     function onModulSelected(event) {
@@ -265,9 +243,7 @@ export default {
       validation,
       router,
       store,
-      onThumbnailSelected,
       onModulSelected,
-      thumbnail,
       modul,
       videos,
       destroy,
