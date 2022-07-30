@@ -17,13 +17,17 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input type="text" class="form-control" v-model="video.desc" />
+                <textarea
+                  type="text"
+                  class="form-control"
+                  v-model="video.desc"
+                ></textarea>
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">ID Video Youtube</label>
+                <label for="" class="form-label">Link Video Youtube</label>
                 <input type="text" class="form-control" v-model="video.idYt" />
                 <div v-if="validation.idYt" class="text-danger">
                   {{ validation.idYt }}
@@ -43,6 +47,7 @@
                   @change="onModulSelected"
                   type="file"
                   class="form-control"
+                  accept=".pdf, .doc, .docx"
                 />
               </div>
               <button class="btn btn-primary">Submit</button>
@@ -84,7 +89,8 @@ export default {
         .then((result) => {
           video.name = result.data.data.name;
           video.desc = result.data.data.desc;
-          video.idYt = result.data.data.idYt;
+          video.idYt =
+            "https://www.youtube.com/watch?v=" + result.data.data.idYt;
           video.thumbnail = result.data.data.thumbnail;
           video.modul = result.data.data.modul.replace("public/moduls/", "");
         })
@@ -93,9 +99,12 @@ export default {
         });
     });
     function update() {
+      var url = new URL(video.idYt);
+      var idyt = url.searchParams.get("v");
+
       const formData = new FormData();
       formData.append("name", video.name);
-      formData.append("idYt", video.idYt);
+      formData.append("idYt", idyt);
       formData.append("desc", video.desc);
 
       if (modul._value === null) {

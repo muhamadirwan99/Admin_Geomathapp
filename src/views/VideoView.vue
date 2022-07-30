@@ -17,7 +17,7 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input type="text" class="form-control" v-model="video.desc" />
+                <textarea class="form-control" v-model="video.desc"></textarea>
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
@@ -36,6 +36,7 @@
                   @change="onModulSelected"
                   type="file"
                   class="form-control"
+                  accept=".pdf, .doc, .docx"
                 />
               </div>
               <div v-if="validation.file" class="text-danger">
@@ -56,7 +57,7 @@
                   <thead class="text-primary">
                     <th>Nama</th>
                     <th>Deskripsi</th>
-                    <th>ID Video Youtube</th>
+                    <th>Link Video Youtube</th>
                     <th>Thumbnail</th>
                     <th>Modul</th>
                     <th>Action</th>
@@ -195,9 +196,12 @@ export default {
     });
 
     function store() {
+      var url = new URL(video.idYt);
+      var idyt = url.searchParams.get("v");
+
       const formData = new FormData();
       formData.append("name", video.name);
-      formData.append("idYt", video.idYt);
+      formData.append("idYt", idyt);
       formData.append("desc", video.desc);
       if (modul._value === null) {
         formData.append("modul", video.modul);

@@ -15,10 +15,11 @@
                   aria-label="Default select example"
                   v-model="tips.category"
                 >
-                  <option value="One">One</option>
-                  <option value="Two">Two</option>
-                  <option value="Three">Three</option></select
-                ><br />
+                  <option value="Disleksia">Disleksia</option>
+                  <option value="Pembelajaran">Pembelajaran</option>
+                  <option value="Peningkatan Minat">Peningkatan Minat</option>
+                </select>
+                <br />
                 <label for="" class="form-label">Judul</label>
                 <input type="text" class="form-control" v-model="tips.name" />
                 <div v-if="validation.name" class="text-danger">

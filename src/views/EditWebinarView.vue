@@ -21,11 +21,11 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   v-model="webinar.desc"
-                />
+                ></textarea>
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
@@ -66,6 +66,7 @@
                   @change="onFileSelected"
                   type="file"
                   class="form-control"
+                  accept="image/*"
                 />
               </div>
               <button class="btn btn-primary">Submit</button>

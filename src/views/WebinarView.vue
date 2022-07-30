@@ -21,11 +21,11 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   v-model="webinar.desc"
-                />
+                ></textarea>
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
@@ -60,6 +60,7 @@
                   @change="onThumbnailSelected"
                   type="file"
                   class="form-control"
+                  accept="image/*"
                 />
                 <div v-if="validation.thumbnail" class="text-danger">
                   {{ validation.thumbnail }}
