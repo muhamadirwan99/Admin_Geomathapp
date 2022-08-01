@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">ID Video Youtube</label>
+                <label for="" class="form-label">Link Video Youtube</label>
                 <input type="text" class="form-control" v-model="video.idYt" />
                 <div v-if="validation.idYt" class="text-danger">
                   {{ validation.idYt }}
