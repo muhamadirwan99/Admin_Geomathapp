@@ -28,7 +28,11 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input type="text" class="form-control" v-model="tips.desc" />
+                <textarea
+                  type="text"
+                  class="form-control"
+                  v-model="tips.desc"
+                ></textarea>
                 <div v-if="validation.desc" class="text-danger">
                   {{ validation.desc }}
                 </div>
