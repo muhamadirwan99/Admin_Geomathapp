@@ -24,7 +24,7 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Link Video Youtube</label>
-                <input type="text" class="form-control" v-model="video.idYt" />
+                <input type="url" class="form-control" v-model="video.idYt" />
                 <div v-if="validation.idYt" class="text-danger">
                   {{ validation.idYt }}
                 </div>
@@ -196,8 +196,11 @@ export default {
     });
 
     function store() {
-      var url = new URL(video.idYt);
-      var idyt = url.searchParams.get("v");
+      var idyt = "";
+      if (validURL(video.idYt)) {
+        var url = new URL(video.idYt);
+        idyt = url.searchParams.get("v");
+      }
 
       const formData = new FormData();
       formData.append("name", video.name);
@@ -218,6 +221,19 @@ export default {
         .catch((err) => {
           validation.value = err.response.data;
         });
+    }
+
+    function validURL(str) {
+      var pattern = new RegExp(
+        "^(https?:\\/\\/)?" + // protocol
+          "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+          "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+          "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+          "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+          "(\\#[-a-z\\d_]*)?$",
+        "i"
+      ); // fragment locator
+      return !!pattern.test(str);
     }
 
     function onModulSelected(event) {
