@@ -67,7 +67,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://34.128.78.90:5000/api/tips/${route.params.id}`)
+        .get(`http://34.101.40.203:5000/api/tips/${route.params.id}`)
         .then((result) => {
           tips.category = result.data.data.category;
           tips.name = result.data.data.name;
@@ -84,7 +84,7 @@ export default {
       formData.append("name", tips.name);
       formData.append("desc", tips.desc);
       axios
-        .put(`http://34.128.78.90:5000/api/tips/${route.params.id}`, formData)
+        .put(`http://34.101.40.203:5000/api/tips/${route.params.id}`, formData)
         .then(() => {
           router.push({
             name: "tips",

@@ -85,7 +85,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://34.128.78.90:5000/api/videos/${route.params.id}`)
+        .get(`http://34.101.40.203:5000/api/videos/${route.params.id}`)
         .then((result) => {
           video.name = result.data.data.name;
           video.desc = result.data.data.desc;
@@ -113,7 +113,10 @@ export default {
         formData.append("modul", modul, modul.name);
       }
       axios
-        .put(`http://34.128.78.90:5000/api/videos/${route.params.id}`, formData)
+        .put(
+          `http://34.101.40.203:5000/api/videos/${route.params.id}`,
+          formData
+        )
         .then(() => {
           router.push({
             name: "video",

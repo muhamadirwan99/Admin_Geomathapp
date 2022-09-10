@@ -96,7 +96,9 @@
                       <td>{{ webinar.date }}</td>
                       <td>
                         <img
-                          :src="'http://34.128.78.90:5000/' + webinar.thumbnail"
+                          :src="
+                            'http://34.101.40.203:5000/' + webinar.thumbnail
+                          "
                           width="300"
                           class="img-thumbnail"
                         />
@@ -212,7 +214,7 @@ export default {
     onMounted(() => {
       // get data from api endpoint
       axios
-        .get("http://34.128.78.90:5000/api/webinars")
+        .get("http://34.101.40.203:5000/api/webinars")
         .then((result) => {
           webinars.value = result.data;
         })
@@ -234,7 +236,7 @@ export default {
       }
       formData.append("status", true);
       axios
-        .post("http://34.128.78.90:5000/api/webinars", formData)
+        .post("http://34.101.40.203:5000/api/webinars", formData)
         .then(() => {
           router.go({
             name: "webinar",
@@ -255,7 +257,7 @@ export default {
 
     function destroy(id, index) {
       axios
-        .delete(`http://34.128.78.90:5000/api/webinars/${id}`)
+        .delete(`http://34.101.40.203:5000/api/webinars/${id}`)
         .then(() => {
           webinars.value.data.splice(index, 1);
           router.go({

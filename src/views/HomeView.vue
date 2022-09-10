@@ -121,7 +121,7 @@
                     <td>{{ webinarName }}</td>
                     <td>
                       <img
-                        :src="'http://34.128.78.90:5000/' + webinarThumbnail"
+                        :src="'http://34.101.40.203:5000/' + webinarThumbnail"
                         width="300"
                         class="img-thumbnail"
                       />
@@ -142,7 +142,7 @@ import { onMounted, ref } from "vue";
 import axios from "axios";
 export default {
   setup() {
-    const url = "http://34.128.78.90:5000/";
+    const url = "http://34.101.40.203:5000/";
     let videos = ref([]);
     let tips = ref([]);
     let webinars = ref([]);
