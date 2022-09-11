@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import("../views/WebinarView.vue"),
     },
     {
+      path: "/kisah",
+      name: "kisah",
+      component: () => import("../views/KisahView.vue"),
+    },
+    {
       path: "/editvideo",
       name: "editvideo",
       component: () => import("../views/EditVideoView.vue"),
@@ -38,6 +43,11 @@ const router = createRouter({
       path: "/edittips",
       name: "edittips",
       component: () => import("../views/EditTipsView.vue"),
+    },
+    {
+      path: "/editkisah",
+      name: "editkisah",
+      component: () => import("../views/EditKisahView.vue"),
     },
   ],
 });

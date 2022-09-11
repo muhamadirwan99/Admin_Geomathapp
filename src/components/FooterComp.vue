@@ -5,7 +5,7 @@
         <div class="credits ml-auto">
           <span class="copyright">
             ©2022, made with <i class="fa fa-heart heart"></i> by Unity Learning
-            Project
+            Team
           </span>
         </div>
       </div>

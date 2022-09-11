@@ -25,6 +25,12 @@
           <p>Webinar</p>
         </router-link>
       </li>
+      <li>
+        <router-link to="/kisah">
+          <i class="nc-icon nc-satisfied"></i>
+          <p>Kisah Inspiratif</p>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
