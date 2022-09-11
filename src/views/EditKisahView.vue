@@ -4,52 +4,52 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Edit Video</h4>
+            <h4 class="card-title">Edit Kisah Inspiratif</h4>
           </div>
           <div class="card-body">
             <form @submit.prevent="update()">
               <div class="mb-3">
-                <label for="" class="form-label">Nama</label>
-                <input type="text" class="form-control" v-model="video.name" />
+                <label for="" class="form-label">Judul</label>
+                <input type="text" class="form-control" v-model="kisah.name" />
                 <div v-if="validation.name" class="text-danger">
                   {{ validation.name }}
                 </div>
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Deskripsi</label>
-                <textarea
+                <label for="" class="form-label">Sumber</label>
+                <input
                   type="text"
                   class="form-control"
-                  v-model="video.desc"
-                ></textarea>
-                <div v-if="validation.desc" class="text-danger">
-                  {{ validation.desc }}
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Link Video Youtube</label>
-                <input type="text" class="form-control" v-model="video.idYt" />
-                <div v-if="validation.idYt" class="text-danger">
-                  {{ validation.idYt }}
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Modul Terkini</label><br />
-                <input
-                  type="text"
-                  class="form-control mb-3"
-                  v-model="video.modul"
-                  disabled
+                  v-model="kisah.sumber"
                 />
-                <label for="" class="form-label">Modul</label><br />
+                <div v-if="validation.sumber" class="text-danger">
+                  {{ validation.sumber }}
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Link Artikel</label>
+                <input type="text" class="form-control" v-model="kisah.link" />
+                <div v-if="validation.link" class="text-danger">
+                  {{ validation.link }}
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Thumbnail Terkini</label><br />
+                <img
+                  :src="'http://34.101.40.203:5000/' + kisah.thumbnail"
+                  width="300"
+                  class="img-thumbnail mb-3"
+                /><br />
+                <label for="" class="form-label">Thumbnail</label><br />
                 <input
-                  id="modul"
-                  @change="onModulSelected"
+                  id="file"
+                  @change="onThumbnailSelected"
                   type="file"
                   class="form-control"
-                  accept=".pdf, .doc, .docx"
+                  accept="image/*"
                 />
               </div>
+
               <button class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -67,15 +67,13 @@ import axios from "axios";
 export default {
   setup() {
     let thumbnail = ref(null);
-    let modul = ref(null);
 
     // data binding
-    let video = reactive({
+    let kisah = reactive({
       name: "",
-      idYt: "",
-      desc: "",
+      sumber: "",
+      link: "",
       thumbnail: "",
-      modul: "",
     });
 
     const validation = ref([]);
@@ -85,41 +83,32 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://34.101.40.203:5000/api/videos/${route.params.id}`)
+        .get(`http://34.101.40.203:5000/api/kisah/${route.params.id}`)
         .then((result) => {
-          video.name = result.data.data.name;
-          video.desc = result.data.data.desc;
-          video.idYt =
-            "https://www.youtube.com/watch?v=" + result.data.data.idYt;
-          video.thumbnail = result.data.data.thumbnail;
-          video.modul = result.data.data.modul.replace("public/moduls/", "");
+          kisah.name = result.data.data.name;
+          kisah.sumber = result.data.data.sumber;
+          kisah.link = result.data.data.link;
+          kisah.thumbnail = result.data.data.thumbnail;
         })
         .catch((err) => {
           console.log(err);
         });
     });
     function update() {
-      var url = new URL(video.idYt);
-      var idyt = url.searchParams.get("v");
-
       const formData = new FormData();
-      formData.append("name", video.name);
-      formData.append("idYt", idyt);
-      formData.append("desc", video.desc);
-
-      if (modul._value === null) {
-        formData.append("modul", video.modul);
+      formData.append("name", kisah.name);
+      formData.append("sumber", kisah.sumber);
+      formData.append("link", kisah.link);
+      if (thumbnail._value === null) {
+        formData.append("thumbnail", kisah.thumbnail);
       } else {
-        formData.append("modul", modul, modul.name);
+        formData.append("thumbnail", thumbnail, thumbnail.name);
       }
       axios
-        .put(
-          `http://34.101.40.203:5000/api/videos/${route.params.id}`,
-          formData
-        )
+        .put(`http://34.101.40.203:5000/api/kisah/${route.params.id}`, formData)
         .then(() => {
           router.push({
-            name: "video",
+            name: "kisah",
           });
         })
         .catch((err) => {
@@ -131,17 +120,13 @@ export default {
       thumbnail = event.target.files[0];
     }
 
-    function onModulSelected(event) {
-      modul = event.target.files[0];
-    }
-
     return {
-      video,
+      kisah,
       validation,
       router,
       update,
-      onModulSelected,
-      modul,
+      onThumbnailSelected,
+      thumbnail,
     };
   },
 };

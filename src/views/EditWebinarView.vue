@@ -119,7 +119,6 @@ export default {
     });
 
     function update() {
-      console.log("isi file", file._value);
       const formData = new FormData();
       formData.append("name", webinar.name);
       formData.append("desc", webinar.desc);

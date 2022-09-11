@@ -22,7 +22,6 @@
                   class="form-control"
                   v-model="kisah.sumber"
                 />
-
                 <div v-if="validation.sumber" class="text-danger">
                   {{ validation.sumber }}
                 </div>
@@ -84,7 +83,7 @@
                         <div class="btn-group">
                           <router-link
                             :to="{
-                              name: 'editvideo',
+                              name: 'editkisah',
                               params: { id: kisah.id },
                             }"
                             class="btn btn-sm btn-outline-info"
