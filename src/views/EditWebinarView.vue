@@ -56,7 +56,7 @@
               <div class="mb-3">
                 <label for="" class="form-label">Pamflet Terkini</label><br />
                 <img
-                  :src="'http://34.101.40.203:5000/' + webinar.thumbnail"
+                  :src="'http://34.101.97.232:5000/' + webinar.thumbnail"
                   width="300"
                   class="img-thumbnail mb-3"
                 /><br />
@@ -104,7 +104,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://34.101.40.203:5000/api/webinars/${route.params.id}`)
+        .get(`http://34.101.97.232:5000/api/webinars/${route.params.id}`)
         .then((result) => {
           webinar.name = result.data.data.name;
           webinar.desc = result.data.data.desc;
@@ -132,7 +132,7 @@ export default {
       formData.append("status", true);
       axios
         .put(
-          `http://34.101.40.203:5000/api/webinars/${route.params.id}`,
+          `http://34.101.97.232:5000/api/webinars/${route.params.id}`,
           formData
         )
         .then(() => {

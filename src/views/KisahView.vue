@@ -74,7 +74,7 @@
                       </td>
                       <td>
                         <img
-                          :src="'http://34.101.40.203:5000/' + kisah.thumbnail"
+                          :src="'http://34.101.97.232:5000/' + kisah.thumbnail"
                           width="300"
                           class="img-thumbnail"
                         />
@@ -177,7 +177,7 @@ export default {
     const validation = ref([]);
     const router = useRouter();
 
-    const url = "http://34.101.40.203:5000/";
+    const url = "http://34.101.97.232:5000/";
 
     // data binding
     const kisah = reactive({
@@ -210,7 +210,7 @@ export default {
         formData.append("thumbnail", thumbnail, thumbnail.name);
       }
       axios
-        .post("http://34.101.40.203:5000/api/kisah", formData)
+        .post("http://34.101.97.232:5000/api/kisah", formData)
         .then(() => {
           router.go({
             name: "kisah",
@@ -227,7 +227,7 @@ export default {
 
     function destroy(id, index) {
       axios
-        .delete(`http://34.101.40.203:5000/api/kisah/${id}`)
+        .delete(`http://34.101.97.232:5000/api/kisah/${id}`)
         .then(() => {
           kisahs.value.data.splice(index, 1);
           router.go({

@@ -36,7 +36,7 @@
               <div class="mb-3">
                 <label for="" class="form-label">Thumbnail Terkini</label><br />
                 <img
-                  :src="'http://34.101.40.203:5000/' + kisah.thumbnail"
+                  :src="'http://34.101.97.232:5000/' + kisah.thumbnail"
                   width="300"
                   class="img-thumbnail mb-3"
                 /><br />
@@ -83,7 +83,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(`http://34.101.40.203:5000/api/kisah/${route.params.id}`)
+        .get(`http://34.101.97.232:5000/api/kisah/${route.params.id}`)
         .then((result) => {
           kisah.name = result.data.data.name;
           kisah.sumber = result.data.data.sumber;
@@ -105,7 +105,7 @@ export default {
         formData.append("thumbnail", thumbnail, thumbnail.name);
       }
       axios
-        .put(`http://34.101.40.203:5000/api/kisah/${route.params.id}`, formData)
+        .put(`http://34.101.97.232:5000/api/kisah/${route.params.id}`, formData)
         .then(() => {
           router.push({
             name: "kisah",
