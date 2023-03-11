@@ -12,7 +12,7 @@
           </button>
         </div>
         <router-link to="/" class="navbar-brand"
-          >Admin Dashboard Unity Disleksia Platform</router-link
+          >Admin Dashboard GeomathApp</router-link
         >
       </div>
     </div>

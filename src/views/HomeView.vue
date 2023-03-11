@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-left">
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body">
@@ -30,12 +30,12 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-bulb-63 text-success"></i>
+                  <i class="nc-icon nc-single-02 text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Tips And Trick</p>
+                  <p class="card-category">User</p>
                   <p class="card-title">{{ tips.length }}</p>
                   <p></p>
                 </div>
@@ -47,29 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-bullet-list-67 text-danger"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Webinar</p>
-                  <p class="card-title">{{ webinars.length }}</p>
-                  <p></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <hr />
-          </div>
-        </div>
-      </div>
+
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -81,12 +59,14 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class="text-primary">
-                  <th>Nama</th>
+                  <th>Judul</th>
+                  <th>Deskripsi</th>
                   <th>Thumbnail</th>
                 </thead>
                 <tbody>
                   <tr>
                     <td>{{ videoName }}</td>
+                    <td>{{ desc }}</td>
                     <td>
                       <img
                         :src="videoThumbnail"
@@ -106,15 +86,17 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">Webinar terbaru</h5>
+            <h5 class="card-title">User</h5>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
                 <thead class="text-primary">
                   <th>Nama</th>
-
-                  <th>Thumbnail</th>
+                  <th>NIS</th> 
+                  <th>Kelas</th>
+                  <th>Poin</th>
+                  
                 </thead>
                 <tbody>
                   <tr>
@@ -144,6 +126,7 @@ export default {
   setup() {
     const url = "http://34.101.97.232:5000/";
     let videos = ref([]);
+    let desc = ref([])
     let tips = ref([]);
     let webinars = ref([]);
     let videoName = ref();

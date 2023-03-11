@@ -8,7 +8,7 @@
           >Add</router-link
         >
         <div class="card rounded shadow">
-          <div class="card-header">Video List</div>
+          <div class="card-header">Video Liste</div>
           <div class="card-body">
             <table class="table">
               <thead>

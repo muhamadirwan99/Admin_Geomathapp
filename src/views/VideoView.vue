@@ -9,7 +9,7 @@
           <div class="card-body">
             <form @submit.prevent="store()">
               <div class="mb-3">
-                <label for="" class="form-label">Nama</label>
+                <label for="" class="form-label">Title</label>
                 <input type="text" class="form-control" v-model="video.name" />
                 <div v-if="validation.name" class="text-danger">
                   {{ validation.name }}
