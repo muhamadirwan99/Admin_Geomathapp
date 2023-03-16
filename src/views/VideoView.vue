@@ -23,30 +23,23 @@
                 </div>
               </div>
               <div class="mb-3">
+                <label for="" class="form-label">Thumbnail</label>
+                <textarea class="form-control" v-model="video.thumbnail"></textarea>
+                <div v-if="validation.desc" class="text-danger">
+                  {{ validation.thumbnail }}
+                </div>
+              </div>
+              <div class="mb-3">
                 <label for="" class="form-label">Link Video Youtube</label>
                 <input type="url" class="form-control" v-model="video.idYt" />
                 <div v-if="validation.idYt" class="text-danger">
                   {{ validation.idYt }}
                 </div>
               </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Modul</label><br />
-                <input
-                  id="modul"
-                  @change="onModulSelected"
-                  type="file"
-                  class="form-control"
-                  accept=".pdf, .doc, .docx"
-                />
-              </div>
-              <div v-if="validation.file" class="text-danger">
-                {{ validation.file }}
-              </div>
               <button class="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>
-        <div class="col-md-12">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">List Video</h4>
@@ -58,8 +51,7 @@
                     <th>Nama</th>
                     <th>Deskripsi</th>
                     <th>Link Video Youtube</th>
-                    <th>Thumbnail</th>
-                    <th>Modul</th>
+                    <th>Link Thumbnail</th>
                     <th>Action</th>
                   </thead>
                   <tbody>
@@ -67,15 +59,7 @@
                       <td>{{ video.name }}</td>
                       <td>{{ video.desc }}</td>
                       <td>{{ video.idYt }}</td>
-                      <td>
-                        <img
-                          :src="video.thumbnail"
-                          width="300"
-                          class="img-thumbnail"
-                        />
-                      </td>
-                      <td>{{ video.modul.replace("public/moduls/", "") }}</td>
-                      <td>
+                      <td>{{ video.thumbnail }}</td>
                         <div class="btn-group">
                           <router-link
                             :to="{
@@ -145,13 +129,12 @@
                             </div>
                           </div>
                         </div>
-                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -180,7 +163,6 @@ export default {
       idYt: "",
       desc: "",
       thumbnail: "",
-      modul: "",
     });
 
     onMounted(() => {
@@ -204,13 +186,8 @@ export default {
 
       const formData = new FormData();
       formData.append("name", video.name);
-      formData.append("idYt", idyt);
+      formData.append("idYt", video.idyt);
       formData.append("desc", video.desc);
-      if (modul._value === null) {
-        formData.append("modul", video.modul);
-      } else {
-        formData.append("modul", modul, modul.name);
-      }
       axios
         .post("http://34.101.97.232:5000/api/videos", formData)
         .then(() => {
@@ -264,7 +241,6 @@ export default {
       router,
       store,
       onModulSelected,
-      modul,
       videos,
       destroy,
       getId,
