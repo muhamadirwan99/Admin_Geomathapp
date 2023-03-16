@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-single-02 text-success"></i>
+                  <i class="nc-icon nc-bulb-63 text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -59,7 +59,7 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class="text-primary">
-                  <th>Judul</th>
+                  <th>Nama</th>
                   <th>Deskripsi</th>
                   <th>Thumbnail</th>
                 </thead>
@@ -95,19 +95,15 @@
                   <th>Nama</th>
                   <th>NIS</th> 
                   <th>Kelas</th>
-                  <th>Poin</th>
-                  
+                  <th>Poin
+                  </th>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{{ webinarName }}</td>
-                    <td>
-                      <img
-                        :src="'http://34.101.97.232:5000/' + webinarThumbnail"
-                        width="300"
-                        class="img-thumbnail"
-                      />
-                    </td>
+                    <td>Nama</td>
+                    <td>NIS</td>
+                    <td>Kelas</td>
+                    <td>Poin</td>
                   </tr>
                 </tbody>
               </table>
